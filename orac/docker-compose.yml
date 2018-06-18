@@ -1,0 +1,38 @@
+version: '3.6'
+services:
+    plex:
+        image: jaymouline/plex
+        networks:
+            hostnet: {}
+        restart: always
+        volumes:
+            - /var/media:/media
+    vpn:
+        image: bantam/docker-piavpn-arm
+        restart: always
+        dns:
+            - 8.8.8.8
+        cap_add:
+            - NET_ADMIN
+        env_file:
+            - /home/jake/vpn.env
+            # specify PIA_USER and PIA_PASS in here
+        environment:
+            - DELUGE_UID=1001
+            - DELUGE_GID=1001
+            - HOST_SUBNET=192.168.0.0/24
+            - PIA_GATEWAY=sweden.privateinternetaccess.com
+        volumes:
+            - /var/media:/torrents
+            - /var/deluge:/app/deluge
+            - /etc/localtime:/etc/localtime:ro
+    apache:
+        image: httpd:2.4
+        ports:
+            - "80:80"
+        volumes:
+            - /var/httpd:/usr/local/apache2/htdocs
+networks:
+    hostnet:
+        external: true
+        name: host

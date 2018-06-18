@@ -31,6 +31,12 @@ install docker-ce 17.09.0 as it seems to work
 - i'm not sure about the following build command but you get the rough idea. **update this next time**
 - `docker build -t bantam/docker-piavpn-arm -f Dockerfile`
 - run the piavpn.bash script
+- when downloading, download to `/torrents/` - this can be made permanent in settings
+
+### Configuring Deluge
+
+- Install Label plugin
+- Install [AutoAdd plugin](https://github.com/gazpachoking/deluge-autoadd-plugin/downloads)
 
 ## other docker scripts
 
@@ -39,4 +45,14 @@ these are plug and play at the time of writing
 - docker ui
 - minecraft server
 - plex
+
+## docker compose
+
+### morpheus
+
+Provisions docker environment for my VPS.
+
+### orac
+
+Provisions docker environment for the Raspberry pi running on my home network.
 
