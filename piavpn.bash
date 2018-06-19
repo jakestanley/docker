@@ -1,11 +1,11 @@
 #/usr/bin/env bash
 
-docker run -d -p 8112:8112 -p 1080:1080 \
+docker run -d -p 8112:8112 -p 1080:1080 -p 58846:58846 \
     --name vpn \
     --restart=always \
     --dns=8.8.8.8 \
     --cap-add=NET_ADMIN \
-    -v /var/media/Downloads:/torrents \
+    -v /var/media:/torrents \
     -v $HOME/docker/deluge:/app/deluge \
     -v /etc/localtime:/etc/localtime:ro \
     -e DELUGE_UID=1001 -e DELUGE_GID=1001 \
