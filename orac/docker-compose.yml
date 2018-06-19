@@ -1,9 +1,8 @@
 version: '3.6'
 services:
     plex:
-        image: jaymouline/plex
-        networks:
-            hostnet: {}
+        image: jaymoulin/plex
+        network_mode: "host"
         restart: always
         volumes:
             - /var/media:/media
@@ -36,7 +35,3 @@ services:
             - "80:80"
         volumes:
             - /var/httpd:/usr/local/apache2/htdocs
-networks:
-    hostnet:
-        external: true
-        name: host
