@@ -5,4 +5,4 @@ docker run -d \
 	--net=host \
 	--restart=always \
 	-v /var/media:/media \
-jaymoulin/rpi-plex:latest
+jaymoulin/plex
