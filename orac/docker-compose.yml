@@ -35,3 +35,13 @@ services:
             - "80:80"
         volumes:
             - /var/httpd:/usr/local/apache2/htdocs
+    openproject:
+        image: openproject/community:8
+        environment:
+            - SECRET_KEY_BASE=secret
+        ports:
+            - 8081:80
+        volumes:
+            - /var/media/openproject/pgdata:/var/lib/postgresql/9.6/main
+            - /var/media/openproject/logs:/var/log/supervisor
+            - /var/media/openproject/static:/var/db/openproject
