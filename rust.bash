@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 CONFIG_DIR=$HOME/.config/com.github.jakestanley.docker
 mkdir -p $CONFIG_DIR
+mkdir -p $HOME/rust
 
 ENV_FILE=$CONFIG_DIR/rust.env
 touch $ENV_FILE
