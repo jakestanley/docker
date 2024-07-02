@@ -1,4 +1,37 @@
 services:
+
+  speedtest:
+    image: lscr.io/linuxserver/speedtest-tracker:0.20.6
+    environment:
+      PUID: $PID
+      PGID: $GID
+      APP_KEY: $SPEEDTEST_TRACK_APP_KEY
+      DB_CONNECTION: sqlite
+      APP_DEBUG: true
+      SPEEDTEST_SCHEDULE: "0 */6 * * *"
+    volumes:
+      - $HOME/speedtest/config:/config
+    ports:
+      - 8085:80
+      - 8443:443
+    restart: unless-stopped
+
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    environment:
+      PUID: $PID
+      PGID: $GID
+    ports:
+      - 80:3000
+    volumes:
+      - $HOME/homepage/config:/app/config # Make sure your local config directory exists
+      - /var/run/docker.sock:/var/run/docker.sock:ro # optional, for docker integrations
+      # read only system mounts for resources widget
+      - /home:/mnt/ro_home:ro
+      - /var/media:/mnt/ro_media:ro
+    restart: unless-stopped
+
   gluetun:
     image: qmcgaw/gluetun
     cap_add:
@@ -14,11 +47,13 @@ services:
       - VPN_TYPE=wireguard
       - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY}
       - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES}
+      - VPN_ENDPOINT_PORT=51820
+      - SERVER_COUNTRIES=UK
       - SERVER_CITIES=Manchester
     restart: always
 
   qbittorrent:
-    image: linuxserver/qbittorrent:latest
+    image: linuxserver/qbittorrent:4.5.2
     container_name: qbittorrent
     environment:
       - PGID=1001
