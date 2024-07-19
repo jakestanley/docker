@@ -37,11 +37,8 @@ services:
     ports:
       - 80:3000
     volumes:
-      - $HOME/homepage/config:/app/config # Make sure your local config directory exists
+      - $HOMEPAGE_CONFIG_DIR:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro # optional, for docker integrations
-      # read only system mounts for resources widget
-      #      - /home:/mnt/ro_home:ro
-      #      - /var/media:/mnt/ro_media:ro
     restart: unless-stopped
 
   gluetun:
