@@ -1,4 +1,16 @@
+volumes:
+  portainer_data:
+
 services:
+
+  portainer:
+    image: portainer/portainer-ce
+    ports:
+      - 9001:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    restart: unless-stopped
 
   speedtest:
     image: lscr.io/linuxserver/speedtest-tracker:0.20.6
@@ -8,7 +20,7 @@ services:
       APP_KEY: $SPEEDTEST_TRACK_APP_KEY
       DB_CONNECTION: sqlite
       APP_DEBUG: true
-      SPEEDTEST_SCHEDULE: "0 */6 * * *"
+      SPEEDTEST_SCHEDULE: "24 */6 * * *"
     volumes:
       - $HOME/speedtest/config:/config
     ports:
@@ -28,8 +40,8 @@ services:
       - $HOME/homepage/config:/app/config # Make sure your local config directory exists
       - /var/run/docker.sock:/var/run/docker.sock:ro # optional, for docker integrations
       # read only system mounts for resources widget
-      - /home:/mnt/ro_home:ro
-      - /var/media:/mnt/ro_media:ro
+      #      - /home:/mnt/ro_home:ro
+      #      - /var/media:/mnt/ro_media:ro
     restart: unless-stopped
 
   gluetun:
@@ -67,3 +79,21 @@ services:
       gluetun:
         condition: service_healthy
     restart: unless-stopped
+
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:latest
+    container_name: syncthing
+    environment:
+      - PUID=$PID
+      - PGID=$GID
+        # - TZ=Etc/UTC
+    volumes:
+      - $HOME/syncthing/config:/config
+      - /var/media/Syncthing:/data1
+    ports:
+      - 8384:8384
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp
+    restart: unless-stopped
+
