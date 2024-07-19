@@ -1,4 +1,19 @@
 #!/usr/bin/env bash
+
+homepage_secrets_file="homepage.secrets"
+if [ ! -f "$homepage_secrets_file" ]; then
+    echo "Error: $homepage_secrets_file does not exist."
+    exit 1
+fi
+
+homepage_config_dir="$HOME/homepage/config"
+homepage_services_file="$homepage_config_dir/services.yaml"
+if [ ! -f "$homepage_services_file" ]; then
+    echo "Error $homepage_services_file does not exist."
+    exit 1
+fi
+
 mkdir -p ~/homepage/config
 mkdir -p ~/syncthing/config
-HOMEPAGE_CONFIG_DIR="$HOME/homepage/config" PID=$(id -u) GID=$(id -g) docker compose up -d
+set -x
+HOMEPAGE_CONFIG_DIR="$homepage_config_dir" PID=$(id -u) GID=$(id -g) docker compose up -d
