@@ -16,4 +16,9 @@ fi
 mkdir -p ~/homepage/config
 mkdir -p ~/syncthing/config
 set -x
-HOMEPAGE_CONFIG_DIR="$homepage_config_dir" PID=$(id -u) GID=$(id -g) docker compose up -d
+if [ $# -eq 0 ]; then
+	HOMEPAGE_CONFIG_DIR="$homepage_config_dir" PID=$(id -u) GID=$(id -g) docker compose up -d
+else
+
+	HOMEPAGE_CONFIG_DIR="$homepage_config_dir" PID=$(id -u) GID=$(id -g) docker compose "$@"
+fi
