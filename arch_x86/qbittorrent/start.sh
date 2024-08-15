@@ -14,7 +14,7 @@ if [ ! -f "$homepage_services_file" ]; then
 fi
 
 mkdir -p ~/homepage/config
-mkdir -p ~/syncthing/config
+
 set -x
 if [ $# -eq 0 ]; then
 	HOMEPAGE_CONFIG_DIR="$homepage_config_dir" PID=$(id -u) GID=$(id -g) docker compose up -d
