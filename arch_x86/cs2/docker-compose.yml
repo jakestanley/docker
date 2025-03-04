@@ -1,0 +1,14 @@
+version: "3"
+services:
+  cs2:
+    image: joedwards32/cs2
+    network_mode: host
+    ports:
+      - 27015:27015/tcp
+      - 27015:27015/udp
+      - 27020:27020/tcp
+    environment:
+      - SRCDS_TOKEN=${SRCDS_TOKEN}
+    volumes:
+      - $HOME/cs2-data:/home/steam/cs2-data
+    restart: unless-stopped
