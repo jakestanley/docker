@@ -19,7 +19,7 @@ services:
       PGID: $GID
       APP_KEY: $SPEEDTEST_TRACK_APP_KEY
       DB_CONNECTION: sqlite
-      APP_DEBUG: true
+      APP_DEBUG: "true"
       SPEEDTEST_SCHEDULE: "24 */6 * * *"
     volumes:
       - $HOME/speedtest/config:/config
