@@ -1,3 +1,5 @@
+Adapted from this guide: https://tongkl.com/wireguard-qbittorrent-ipv6/
+
 You'll need to add these lines to your wg0.conf under `[Interface]`. Assuming your subnet is on 192.168.1.0
 
 ```

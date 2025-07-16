@@ -13,8 +13,8 @@ services:
       - ./wg-config:/config
       - /lib/modules:/lib/modules
     ports:
-      - "0.0.0.0:8080:${QBT_WEBUI_PORT}"
-      - "[::1]:8080:${QBT_WEBUI_PORT}"
+      - "0.0.0.0:8090:${QBT_WEBUI_PORT}"
+      - "[::1]:8090:${QBT_WEBUI_PORT}"
       # - "12345:12345/udp"  # Replace with your VPN's port-forwarding configuration
       - "51820:51820/udp"  # Default Wireguard port
     networks:
