@@ -29,7 +29,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - QBT_EULA=${QBT_EULA}
+      - QBT_LEGAL_NOTICE=${QBT_LEGAL_NOTICE}
       - QBT_VERSION=${QBT_VERSION}
       - QBT_WEBUI_PORT=${QBT_WEBUI_PORT}
       - TZ=America/Los_Angeles  # Change to your time zone
