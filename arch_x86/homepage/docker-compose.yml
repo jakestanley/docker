@@ -35,6 +35,7 @@ services:
     environment:
       PUID: $PID
       PGID: $GID
+      HOMEPAGE_ALLOWED_HOSTS: adler.local,adler.local:80,192.168.1.6
     ports:
       - 80:3000
     volumes:
