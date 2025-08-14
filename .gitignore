@@ -2,3 +2,4 @@ deluge/*
 minecraft/*
 plex
 .env
+*/*/.env
