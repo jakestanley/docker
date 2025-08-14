@@ -1,16 +1,4 @@
-volumes:
-  portainer_data:
-
 services:
-
-  #portainer:
-  #  image: portainer/portainer-ce
-  #  ports:
-  #    - 9001:9000
-  #  volumes:
-  #    - /var/run/docker.sock:/var/run/docker.sock
-  #    - portainer_data:/data
-  #  restart: unless-stopped
 
   speedtest:
     image: lscr.io/linuxserver/speedtest-tracker:0.20.6
@@ -42,4 +30,3 @@ services:
       - $HOMEPAGE_CONFIG_DIR:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro # optional, for docker integrations
     restart: unless-stopped
-
