@@ -60,8 +60,8 @@ services:
         WORKDIR /workspace
         CMD ["sh"]
     environment:
-      - HOME=/home/user
-      - PATH=/home/user/.local/bin:$PATH
+      - HOME=/home/jake
+      - PATH=/home/jake/.local/bin:$PATH
     # Most Ubuntu desktop installs have UID/GID = 1000
     user: "1000:1000"
     volumes:
