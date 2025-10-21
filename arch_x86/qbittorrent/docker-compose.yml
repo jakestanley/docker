@@ -50,14 +50,22 @@ services:
       context: .
       dockerfile_inline: |
         FROM alpine:3.20
+        RUN addgroup -g 1000 jake \
+            && adduser -D -u 1000 -G jake jake \
+            && mkdir -p /home/jake \
+            && chown -R 1000:1000 /home/jake
         RUN apk add --no-cache bash curl git pipx
+        USER jake
         RUN pipx install pirate-get
         WORKDIR /workspace
         CMD ["sh"]
     environment:
-      - PATH=/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - HOME=/home/user
+      - PATH=/home/user/.local/bin:$PATH
+    # Most Ubuntu desktop installs have UID/GID = 1000
+    user: "1000:1000"
     volumes:
-      - .:/workspace
+      - $HOME/pirateget:/workspace
     tty: true
 
 networks:
