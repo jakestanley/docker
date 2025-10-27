@@ -1,0 +1,9 @@
+services:
+  upsnap:
+    container_name: upsnap
+    image: ghcr.io/seriousm4x/upsnap:5 # images are also available on docker hub: seriousm4x/upsnap:5
+    network_mode: host
+    restart: unless-stopped
+    entrypoint: /bin/sh -c "./upsnap serve --http 0.0.0.0:5001"
+    volumes:
+      - ./data:/app/pb_data
