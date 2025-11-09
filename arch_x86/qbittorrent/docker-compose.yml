@@ -8,7 +8,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/Los_Angeles  # Change to your time zone
+      - TZ=Europe/London  # Change to your time zone
     volumes:
       - ./wg-config:/config
       - /lib/modules:/lib/modules
@@ -64,6 +64,7 @@ services:
       - PATH=/home/jake/.local/bin:$PATH
     # Most Ubuntu desktop installs have UID/GID = 1000
     user: "1000:1000"
+    restart: unless-stopped
     volumes:
       - $HOME/pirateget:/workspace
     tty: true
