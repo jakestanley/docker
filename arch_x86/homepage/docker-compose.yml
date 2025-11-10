@@ -1,7 +1,7 @@
 services:
 
   speedtest:
-    image: lscr.io/linuxserver/speedtest-tracker:0.20.6
+    image: lscr.io/linuxserver/speedtest-tracker:latest
     environment:
       PUID: $PID
       PGID: $GID
