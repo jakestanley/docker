@@ -8,8 +8,6 @@ services:
       DROPBOX_UID: 1000
       DROPBOX_GID: 1000
     volumes:
-      - /var/media/Dropbox:/dropbox
-      - dropbox-config:/config
+      - /var/media/Dropbox:/opt/dropbox/Dropbox
+      - ./data:/opt/dropbox
 
-volumes:
-  dropbox-config:
